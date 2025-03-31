@@ -2,15 +2,32 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [domain, setDomain] = useState("naver.com");
+
+  const domains = ["naver.com", "google.com", "kakao.com"];
 
   return (
-    <div>
-      <h1>react 복습</h1>
-      <button onClick={() => setCount((count) => count + 1)}>
-        count is {count}
-      </button>
-    </div>
+    <>
+      <div>
+        <div>
+          <input type="text" />
+          {domain === "" ? null : <span>@</span>}
+          <select>
+            {domains.map((d) => {
+              return (
+                <option key={d} value={d}>
+                  {d}
+                </option>
+              );
+            })}
+            <option value="">직접입력</option>
+          </select>
+        </div>
+        <input type="password" />
+        <button>로그인</button>
+      </div>
+      <div>회원가입</div>
+    </>
   );
 }
 
