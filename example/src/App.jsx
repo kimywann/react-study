@@ -2,17 +2,30 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
+  const [id, setId] = useState("");
   const [domain, setDomain] = useState("naver.com");
 
   const domains = ["naver.com", "google.com", "kakao.com"];
+
+  console.log("App", id);
+
+  const onChangeEmail = (e) => {
+    console.log("before", id); // ""
+    setId(e.target.value);
+    console.log("after", id); // ""
+  };
+
+  const onChangeDomain = (e) => {
+    setDomain(e.target.value);
+  };
 
   return (
     <>
       <div>
         <div>
-          <input type="text" />
+          <input type="text" value={id} onChange={onChangeEmail} />
           {domain === "" ? null : <span>@</span>}
-          <select>
+          <select value={domain} onChange={onChangeDomain}>
             {domains.map((d) => {
               return (
                 <option key={d} value={d}>
