@@ -1,10 +1,20 @@
 import { useState } from "react";
 import "./App.css";
 
-function App() {
-  const [id, setId] = useState("");
-  const [domain, setDomain] = useState("naver.com");
+function veryHeavyComputation() {
+  let sum = 0;
+  for (let i = 0; i < 100000000; i++) {
+    sum += i;
+  }
+  return sum;
+}
 
+function App() {
+  const [id, setId] = useState(() => {
+    return veryHeavyComputation();
+  });
+  const [domain, setDomain] = useState("naver.com");
+  const [password, setPassword] = useState("");
   const domains = ["naver.com", "google.com", "kakao.com"];
 
   console.log("App", id);
@@ -17,6 +27,16 @@ function App() {
 
   const onChangeDomain = (e) => {
     setDomain(e.target.value);
+  };
+
+  const onChangePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const fullDomain = `${id}@${domain}`;
+
+  const onLogin = () => {
+    console.log(fullDomain, password); // 서버로 보내서 로그인
   };
 
   return (
@@ -36,8 +56,8 @@ function App() {
             <option value="">직접입력</option>
           </select>
         </div>
-        <input type="password" />
-        <button>로그인</button>
+        <input type="password" value={password} onChange={onChangePassword} />
+        <button onClick={onLogin}>로그인</button>
       </div>
       <div>회원가입</div>
     </>
