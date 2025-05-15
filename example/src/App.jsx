@@ -11,9 +11,7 @@ function App() {
   console.log("App", id);
 
   const onChangeEmail = (e) => {
-    console.log("before", id); // ""
     setId(e.target.value);
-    console.log("after", id); // ""
   };
 
   const onChangeDomain = (e) => {
@@ -35,7 +33,7 @@ function App() {
       setErrors({ passwordError: "비밀번호를 입력해주세요." });
       return;
     }
-    setErrors;
+    setErrors({});
     console.log(fullDomain, password);
   };
 
@@ -79,7 +77,6 @@ function App() {
         </div>
         <button onClick={onLogin}>로그인</button>
       </div>
-      <div>회원가입</div>
     </>
   );
 }
