@@ -6,6 +6,7 @@ function App() {
   const [domain, setDomain] = useState("naver.com");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const [count, setCount] = useState(0);
   const domains = ["naver.com", "google.com", "kakao.com"];
 
   console.log("App", id);
@@ -24,7 +25,10 @@ function App() {
 
   const fullDomain = `${id}@${domain}`;
 
-  const onLogin = () => {
+  const onLogin = () => { // batch
+    setCount(count + 1);
+    setCount((prev) => prev + 1);
+    console.log("count", count);
     if (!id?.trim()) {
       setErrors({ idError: "아이디를 입력해주세요." });
       return;
