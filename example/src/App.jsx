@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./App.css";
 
 function App() {
   const [id, setId] = useState("");
+  const idRef = useRef(null); // { current: null }
+  const passwordRef = useRef(null);
+  const countRef = useRef(0);
   const [domain, setDomain] = useState("naver.com");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
-  const [count, setCount] = useState(0);
   const domains = ["naver.com", "google.com", "kakao.com"];
 
   console.log("App", id);
@@ -25,16 +27,17 @@ function App() {
 
   const fullDomain = `${id}@${domain}`;
 
-  const onLogin = () => { // batch
-    setCount(count + 1);
-    setCount((prev) => prev + 1);
-    console.log("count", count);
+  const onLogin = () => {
+    countRef.current += 1;
+
     if (!id?.trim()) {
       setErrors({ idError: "아이디를 입력해주세요." });
+      idRef.current?.focus();
       return;
     }
     if (!password?.trim()) {
       setErrors({ passwordError: "비밀번호를 입력해주세요." });
+      passwordRef.current?.focus();
       return;
     }
     setErrors({});
@@ -51,7 +54,7 @@ function App() {
           >
             아이디
           </label>
-          <input type="text" value={id} onChange={onChangeEmail} />
+          <input ref={idRef} type="text" value={id} onChange={onChangeEmail} />
           {domain === "" ? null : <span>@</span>}
           <select value={domain} onChange={onChangeDomain}>
             {domains.map((d) => {
@@ -74,7 +77,12 @@ function App() {
           >
             비밀번호
           </label>
-          <input type="password" value={password} onChange={onChangePassword} />
+          <input
+            ref={passwordRef}
+            type="password"
+            value={password}
+            onChange={onChangePassword}
+          />
           {errors.passwordError && (
             <div style={{ color: "red" }}>{errors.passwordError}</div>
           )}
