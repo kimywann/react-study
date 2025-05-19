@@ -11,7 +11,7 @@ export default function Input({
     <div>
       <label
         htmlFor="nickname"
-        style={{ display: "inline-blockm", width: "80px" }}
+        style={{ display: "inline-block", width: "80px" }}
       >
         {text}
       </label>

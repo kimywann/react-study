@@ -10,7 +10,7 @@ export default function EmailInput({
 
   return (
     <div>
-      <label htmlFor="id" style={{ display: "inline-blockm", width: "80px" }}>
+      <label htmlFor="id" style={{ display: "inline-block", width: "80px" }}>
         아이디
       </label>
       <input ref={idRef} type="text" value={id} onChange={onChangeEmail} />
