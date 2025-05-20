@@ -1,8 +1,7 @@
-import useInput from "./useInput";
 import { useState, useRef } from "react";
 
 export default function useEmailInput() {
-  const [id, setId] = useInput("");
+  const [id, setId] = useState("");
   const idRef = useRef(null);
 
   const [domain, setDomain] = useState("naver.com");
@@ -20,7 +19,6 @@ export default function useEmailInput() {
     idRef,
     onChangeEmail,
     domain,
-    setDomain,
     onChangeDomain,
   };
 }
