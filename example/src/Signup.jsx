@@ -1,45 +1,22 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
+
 import EmailInput from "./components/EmailInput";
-import Input from "./components/input";
+import Input from "./components/Input";
+
+import useInput from "./hooks/useInput";
+import useEmailInput from "./hooks/useEmailInput";
+
 import "./App.css";
 
 function Signup() {
-  const [id, setId] = useState("");
-  const idRef = useRef(null); // { current: null }
-
-  const [domain, setDomain] = useState("naver.com");
-  const fullDomain = `${id}@${domain}`;
-
-  const passwordRef = useRef(null);
-  const [password, setPassword] = useState("");
-
-  const [nickname, setNickname] = useState("");
-  const nicknameRef = useRef(null);
-
-  const [phone, setPhone] = useState("");
-  const phoneRef = useRef(null);
+  const { id, idRef, onChangeEmail, onChangeDomain, domain } = useEmailInput();
+  const [password, passwordRef, onChangePassword] = useInput("");
+  const [nickname, nicknameRef, onChangeNickname] = useInput("");
+  const [phone, phoneRef, onChangePhone] = useInput("");
 
   const [errors, setErrors] = useState({});
 
-  const onChangeEmail = (e) => {
-    setId(e.target.value);
-  };
-
-  const onChangeDomain = (e) => {
-    setDomain(e.target.value);
-  };
-
-  const onChangePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const onChangeNickname = (e) => {
-    setNickname(e.target.value);
-  };
-
-  const onChangePhone = (e) => {
-    setPhone(e.target.value);
-  };
+  const fullDomain = `${id}@${domain}`;
 
   const onLogin = () => {
     if (!id?.trim()) {
