@@ -1,4 +1,6 @@
-export default function EmailInput({
+import { memo } from "react";
+
+function EmailInput({
   errors,
   idRef,
   id,
@@ -29,3 +31,5 @@ export default function EmailInput({
     </div>
   );
 }
+
+export default memo(EmailInput);
