@@ -1,12 +1,6 @@
-export default function Input({
-  text,
-  ref,
-  type = "text",
-  id,
-  value,
-  onChange,
-  errors,
-}) {
+import { memo } from "react";
+
+function Input({ text, ref, type = "text", id, value, onChange, errors }) {
   return (
     <div>
       <label
@@ -27,3 +21,5 @@ export default function Input({
     </div>
   );
 }
+
+export default memo(Input);
