@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 
 export default function useEmailInput() {
   const [id, setId] = useState("");
@@ -6,13 +6,13 @@ export default function useEmailInput() {
 
   const [domain, setDomain] = useState("naver.com");
 
-  const onChangeEmail = (e) => {
+  const onChangeEmail = useCallback((e) => {
     setId(e.target.value);
-  };
+  }, []);
 
-  const onChangeDomain = (e) => {
+  const onChangeDomain = useCallback((e) => {
     setDomain(e.target.value);
-  };
+  }, []);
 
   return {
     id,
