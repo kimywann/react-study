@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import { useNavigate } from "react-router";
 
 import "./App.css";
 
@@ -14,7 +13,6 @@ function Login() {
   const [password, passwordRef, onChangePassword] = useInput("");
   const countRef = useRef(0);
   const [errors, setErrors] = useState({});
-  const navigate = useNavigate();
 
   const fullDomain = `${id}@${domain}`;
 
@@ -36,7 +34,8 @@ function Login() {
   };
 
   const onSignup = () => {
-    navigate("/signup");
+    history.pushState(null, "", "/signup");
+    dispatchEvent(new PopStateEvent("popstate"));
   };
 
   return (
