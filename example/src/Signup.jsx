@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
+
 import EmailInput from "./components/EmailInput";
 import Input from "./components/Input";
 
@@ -13,7 +13,6 @@ function Signup() {
   const [password, passwordRef, onChangePassword] = useInput("");
   const [nickname, nicknameRef, onChangeNickname] = useInput("");
   const [phone, phoneRef, onChangePhone] = useInput("");
-  const navigate = useNavigate();
 
   const [errors, setErrors] = useState({});
 
@@ -35,7 +34,8 @@ function Signup() {
   };
 
   const onLogin = () => {
-    navigate("/login");
+    history.pushState(null, "", "/login");
+    dispatchEvent(new PopStateEvent("popstate"));
   };
 
   return (
