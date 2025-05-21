@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router";
 import EmailInput from "./components/EmailInput";
 import Input from "./components/Input";
 
@@ -13,12 +13,13 @@ function Signup() {
   const [password, passwordRef, onChangePassword] = useInput("");
   const [nickname, nicknameRef, onChangeNickname] = useInput("");
   const [phone, phoneRef, onChangePhone] = useInput("");
+  const navigate = useNavigate();
 
   const [errors, setErrors] = useState({});
 
   const fullDomain = `${id}@${domain}`;
 
-  const onLogin = () => {
+  const onSignup = () => {
     if (!id?.trim()) {
       setErrors({ idError: "아이디를 입력해주세요." });
       idRef.current?.focus();
@@ -31,6 +32,10 @@ function Signup() {
     }
     setErrors({});
     console.log(fullDomain, password);
+  };
+
+  const onLogin = () => {
+    navigate("/login");
   };
 
   return (
@@ -71,9 +76,9 @@ function Signup() {
           onChange={onChangePhone}
           errors={errors.phoneError}
         />
-        <button onClick={onLogin}>회원가입</button>
+        <button onClick={onSignup}>회원가입</button>
       </div>
-      <div>로그인</div>
+      <button onClick={onLogin}>로그인</button>
     </>
   );
 }
